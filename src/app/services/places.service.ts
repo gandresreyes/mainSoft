@@ -37,8 +37,7 @@ export class PlacesService  {
 
   addFav(place:any){
     const favRef = collection(this.firestore , 'favoritos');
-    return addDoc(favRef , place )
-     
+    return addDoc(favRef , place )     
   }  
 
   getFav(){

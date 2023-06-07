@@ -1,1 +1,39 @@
-<p>historial works!</p>
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <h3>Favoritos</h3>
+            <ul class="list-group">
+                <li *ngFor="let item of favList " class="list-group-item  list-group-item-action" (click)="verInfo(item)"> 
+                    <span class="pointer">{{item.name}}-{{item.country}} 
+                    </span>                                   
+                </li>
+            </ul>
+    
+        </div >
+        <div class="col-lg-9" *ngIf="history != ''">
+            <h3 class="text-center " >{{history.city.name}}-{{history.city.country}}</h3>
+            <div class="row pt-3">
+                <div class="col-lg-4 py-4" *ngFor="let item of history.list  ">
+                    <div class="card">                        
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center align-items-center" style="height: 90px;">                                                              
+                                <img src="https://openweathermap.org/img/wn/{{item.weather[0]?.icon}}.png" alt="nube" width="80"
+                                height="80"> 
+                                <div>
+                                    <span>{{item.weather[0]?.description | titlecase}}</span> <br>
+                                    <span>temp: {{item.main.temp}} °C</span>
+                                    <span>humedad: {{item.main.humidity}} %</span>
+
+                                </div>                              
+                                    
+                            </div>                               
+                           {{item.dt_txt}}
+                                                  
+                        </div>
+                      </div>    
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+

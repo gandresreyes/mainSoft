@@ -32,4 +32,14 @@ export class ClimaServiceService {
     return this.http.get(url,{params : this.httpParamasvity })
   }
 
+  get httpParamashostory(){
+    return  new HttpParams().set('appid',this.key).set('lang', "ES").set('units', 'metric')
+  }
+
+  cosultaHistory(place:any){       
+    const url = `${this.apiUrl}/data/2.5/forecast?lat=${place.coord.lat}&lon=${place.coord.lon}`;
+     return this.http.get(url,{params : this.httpParamashostory })
+    
+  }
+
 }

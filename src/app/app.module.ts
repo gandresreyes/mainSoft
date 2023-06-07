@@ -13,6 +13,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { TimePipe } from './pipes/time.pipe';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MapaComponent,
     ViewMapComponent,
     SearchBarComponent,
+    TimePipe,
    
     
   ],

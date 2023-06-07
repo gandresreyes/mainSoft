@@ -81,12 +81,13 @@ export class SearchBarComponent {
 
   }
 
-  async addFav(ciudad:any){    
+  async addFav(ciudad:any){   
+    
     const filter = this.favList.find((element:any) => (element.name == ciudad.name ) &&  (element.country == ciudad.sys.country));
    if(filter){
     return 
    }   
-    const data = {name: ciudad.name , country :ciudad.sys.country }
+    const data = {name: ciudad.name , country :ciudad.sys.country , coord: ciudad.coord}
     await this.placesService.addFav(data) 
     
   }

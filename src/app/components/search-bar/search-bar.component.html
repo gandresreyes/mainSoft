@@ -42,17 +42,24 @@
             </div>
 
 
-            <div class="text-right">
+            <div class="d-flex justify-content-between aling-items-center">
                 <img src="https://openweathermap.org/img/wn/{{resulClima.weather[0]?.icon}}.png" alt="nube" width="80"
                     height="80">
-                <span>{{resulClima.weather[0]?.description | titlecase}}</span>
+                    <div>
+                        <h4>Clima</h4>
+                        <small>{{resulClima.weather[0]?.description | titlecase}}</small><br>
+                        <small>Temperatura: {{resulClima.main.temp }} °C</small><br>
+                        <small>Humedad: {{resulClima.main.humidity }} %</small><br>
+
+                    </div>
+                
             </div>
         </div>
 
         <hr>
         <h3>Favoritos</h3>
         <ul class="list-group">
-            <li *ngFor="let item of favList " class="list-group-item"> 
+            <li *ngFor="let item of favList " class="list-group-item  list-group-item-action"> 
                 <span class="pointer"
                     (click)="buscar(item.name ,item.country)">{{item.name}}-{{item.country}} 
                 </span>
