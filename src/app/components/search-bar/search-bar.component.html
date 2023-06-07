@@ -1,0 +1,69 @@
+<div class="search-container" style="z-index: 9999999999999999;">
+    <form>
+        <input type="text" name="terminio" class="form-control" autocomplete="off" placeholder="Buscar lugar..."
+            name="pais" #txtInput (input)="teclaPrecionada(txtInput.value)">
+        <button class="btn btn-light  open" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"  (click)="openClose()">
+            <svg class="svg-icon " viewBox="0 0 20 20" [ngClass]="{'controlShow':!open , 'controlhide':open} ">
+                <path fill="#999" 
+                    d="M8.388,10.049l4.76-4.873c0.303-0.31,0.297-0.804-0.012-1.105c-0.309-0.304-0.803-0.293-1.105,0.012L6.726,9.516c-0.303,0.31-0.296,0.805,0.012,1.105l5.433,5.307c0.152,0.148,0.35,0.223,0.547,0.223c0.203,0,0.406-0.08,0.559-0.236c0.303-0.309,0.295-0.803-0.012-1.104L8.388,10.049z">
+                </path>
+            </svg>
+        </button>
+
+    </form>
+
+    <ul class="list-group">
+        <li *ngFor="let item of resultSearch " class="list-group-item"> <span class="pointer"
+                (click)="buscar(item.name ,item.country)">{{item.name}}-{{item.country}}</span>
+        </li>
+    </ul>
+
+</div>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" style="top:56px" tabindex="-1"
+    id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <button type="button " class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+    <div class="offcanvas-body">
+        <div class=" text-bg-light bg"
+            style="height: 33%; min-height: 33% ; background-image: url(assets/logo-dark.png);">
+        </div>
+        <div *ngIf="resulClima  != ''">
+
+            <div class="d-flex justify-content-between aling-items-center">
+                <h3>{{resulClima.name}}</h3>
+                <svg class="svg-icon" viewBox="0 0 20 20" (click)="addFav(resulClima)" fill="#999">
+                    <path  [ngClass]="{'fav':this.resulClima.fav } "
+                        d="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z">
+                    </path>
+                </svg>
+
+            </div>
+
+
+            <div class="text-right">
+                <img src="https://openweathermap.org/img/wn/{{resulClima.weather[0]?.icon}}.png" alt="nube" width="80"
+                    height="80">
+                <span>{{resulClima.weather[0]?.description | titlecase}}</span>
+            </div>
+        </div>
+
+        <hr>
+        <h3>Favoritos</h3>
+        <ul class="list-group">
+            <li *ngFor="let item of favList " class="list-group-item"> 
+                <span class="pointer"
+                    (click)="buscar(item.name ,item.country)">{{item.name}}-{{item.country}} 
+                </span>
+                <span >
+                    <svg class="svg-icon  float-end" viewBox="0 0 20 20" (click)="delete(item)">
+                        <path    d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
+                    </svg>
+                </span>
+                
+            </li>
+        </ul>
+
+    </div>
+</div>

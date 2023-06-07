@@ -1,0 +1,37 @@
+.search-container{
+    position: fixed;
+    top:80px ;
+    left: 20px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.bg{
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+}
+
+.open{
+    position: absolute;
+    top: 0px;
+    right: -60px;
+
+}
+svg{
+    width: 25px;
+    text-align: center;
+}
+.controlShow{
+    transform: rotate(180deg);
+    transition: 1s;
+}
+.controlhide{
+    transform: none;
+    transition: 1s;
+}
+ svg .fav {
+    fill: #ffff00 ;
+}
